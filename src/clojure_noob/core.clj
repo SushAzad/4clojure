@@ -89,4 +89,10 @@ from the latter (left-to-right) should be combined with the mapping in the resul
 (map (partial reduce +) [[1 2 3 4] [5 6 7 8]])
 
 (->> [2 5 4 1 3 6]
-     (drop 2))
+     (drop 2)
+     (take 3)
+     (map inc))
+
+(for [x (range 40)
+            :when (= 1 (rem x 4))]
+           x)
