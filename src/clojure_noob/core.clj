@@ -96,3 +96,16 @@ from the latter (left-to-right) should be combined with the mapping in the resul
 (for [x (range 40)
             :when (= 1 (rem x 4))]
            x)
+(.split "a 1 b 2 c 3" " ")
+
+(defn p156 [defaultval keys] (let [key-map (for [key keys] {key defaultval})
+                                   map-set {}]
+                               (reduce #(conj %1 %2) map-set key-map)))
+
+(p156 0 [:a :b :c])
+
+(conj {} {:b "2"})
+
+(let [key-map {}]
+  (for [x [0 1 2 3]]
+    (conj)))

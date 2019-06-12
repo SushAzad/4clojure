@@ -90,7 +90,7 @@
 ;Ans:
 last
 
-Problem 145: Clojure's for macro is a tremendously versatile mechanism for producing a sequence based on some other sequence(s). It can take some time to understand how to use it properly, but that investment will be paid back with clear, concise sequence-wrangling later. With that in mind, read over these for expressions and try to see how each of them produces the same result.
+;Problem 145: Clojure's for macro is a tremendously versatile mechanism for producing a sequence based on some other sequence(s). It can take some time to understand how to use it properly, but that investment will be paid back with clear, concise sequence-wrangling later. With that in mind, read over these for expressions and try to see how each of them produces the same result.
 (= __ (for [x (range 40)
             :when (= 1 (rem x 4))]
         x))
@@ -107,6 +107,29 @@ Problem 145: Clojure's for macro is a tremendously versatile mechanism for produ
         (+ x y)))
 ;Ans:
 [1 5 9 13 17 21 25 29 33 37]
+
+;Problem 156: When retrieving values from a map, you can specify default values in case the key is not found:
+;
+;(= 2 (:foo {:bar 0, :baz 1} 2))
+;
+;However, what if you want the map itself to contain the default values? Write a function which takes a default value and a sequence of keys and constructs a map.
+(= (__ 0 [:a :b :c]) {:a 0 :b 0 :c 0})
+(= (__ "x" [1 2 3]) {1 "x" 2 "x" 3 "x"})
+(= (__ [:a :b] [:foo :bar]) {:foo [:a :b] :bar [:a :b]})
+
+;Ans
+(fn [defaultval keys] (let [key-map (for [key keys] {key defaultval})
+                                   map-set {}]
+                               (reduce #(conj %1 %2) map-set key-map)))
+
+;Problem 161: Set A is a subset of set B, or equivalently B is a superset of A, if A is "contained" inside B. A and B may coincide.
+(clojure.set/superset? __ #{2})
+(clojure.set/subset? #{1} __)
+(clojure.set/superset? __ #{1 2})
+(clojure.set/subset? #{1 2} __)
+(clojure.set/subset? #{1 2} __)
+;Ans
+#{1 2 3}
 
 ;Problem 162: In Clojure, only nil and false represent the values of logical falsity in conditional tests - anything else is logical truth.
 (= __ (if-not false 1 0))
