@@ -53,7 +53,26 @@
 (fn [seq] (let [len (count seq)]
             (println len)
             (nth seq (- len 1))))
+;Problem 20: Write a function which returns the second to last element from a sequence.
 
+(= (__ (list 1 2 3 4 5)) 4)
+
+(= (__ ["a" "b" "c"]) "b")
+
+(= (__ [[1 2] [3 4]]) [1 2])
+;Ans
+
+(fn [seq] (let [len (count seq)]
+            (nth seq (- len 2))))
+
+;Problem 21:Write a function which returns the Nth element from a sequence.
+(= (__ '(4 5 6 7) 2) 6)
+(= (__ [:a :b :c] 0) :a)
+(= (__ [1 2 3 4] 1) 2)
+(= (__ '([1 2] [3 4] [5 6]) 2) [5 6])
+
+;Ans
+(fn [seq n] (last (take (+ n 1) seq)))
 ;Problem 35: Clojure lets you give local names to values using the special let-form.
 
 (= __ (let [x 5] (+ 2 x)))

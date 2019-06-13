@@ -116,3 +116,8 @@ from the latter (left-to-right) should be combined with the mapping in the resul
 ((fn [seq] (let [len (count seq)]
            (println len)
            (nth seq (- len 1)))) [1 2 3 4])
+
+(fn [seq] (let [len (count seq)]
+            (nth seq (- len 2))))
+
+((fn [seq n] (last (take (+ n 1) seq)))'(1 2 3 4 5) 2)
