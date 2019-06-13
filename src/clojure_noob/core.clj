@@ -109,3 +109,10 @@ from the latter (left-to-right) should be combined with the mapping in the resul
 (let [key-map {}]
   (for [x [0 1 2 3]]
     (conj)))
+
+
+((fn [seq] (last seq)) [1 2 3 4])
+
+((fn [seq] (let [len (count seq)]
+           (println len)
+           (nth seq (- len 1)))) [1 2 3 4])

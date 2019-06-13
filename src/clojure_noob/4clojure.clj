@@ -44,6 +44,16 @@
 ;Ans:
 '(6 7)
 
+;Problem 19: Write a function which returns the last element in a sequence.
+
+(= (__ [1 2 3 4 5]) 5)
+(= (__ '(5 4 3)) 3)
+(= (__ ["b" "c" "d"]) "d")
+;Ans
+(fn [seq] (let [len (count seq)]
+            (println len)
+            (nth seq (- len 1))))
+
 ;Problem 35: Clojure lets you give local names to values using the special let-form.
 
 (= __ (let [x 5] (+ 2 x)))
