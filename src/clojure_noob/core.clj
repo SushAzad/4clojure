@@ -100,6 +100,7 @@ from the latter (left-to-right) should be combined with the mapping in the resul
 
 (defn p156 [defaultval keys] (let [key-map (for [key keys] {key defaultval})
                                    map-set {}]
+                               (println key-map)
                                (reduce #(conj %1 %2) map-set key-map)))
 
 (p156 0 [:a :b :c])
@@ -121,3 +122,13 @@ from the latter (left-to-right) should be combined with the mapping in the resul
             (nth seq (- len 2))))
 
 ((fn [seq n] (last (take (+ n 1) seq)))'(1 2 3 4 5) 2)
+
+(fn [seq] (reduce + (map (constantly 1) seq)))
+
+(reduce + (map (constantly 1) [:a :b :c]))
+
+(defn la [seq] (let [mylist '()]
+            (map #(conj mylist %1) seq)))
+(la '(1 2 3))
+
+((fn [seq] (reduce + seq)) [1 2 3])

@@ -73,6 +73,29 @@
 
 ;Ans
 (fn [seq n] (last (take (+ n 1) seq)))
+
+;Problem 22:
+Write a function which returns the total number of elements in a sequence.
+(= (__ '(1 2 3 3 1)) 5)
+(= (__ "Hello World") 11)
+(= (__ [[1 2] [3 4] [5 6]]) 3)
+(= (__ '(13)) 1)
+(= (__ '(:a :b :c)) 3)
+(= (__ '(:a :b :c)) 3)
+;Ans:
+(fn [seq] (reduce + (map (constantly 1) seq)))
+
+;Problem 24: Write a function which returns the sum of a sequence of numbers.
+(= (__ [1 2 3]) 6)
+(= (__ (list 0 -2 5 5)) 8)
+(= (__ #{4 2 1}) 7)
+(= (__ '(0 0 -1)) -1)
+(= (__ '(1 10 3)) 14)
+(= (__ '(1 10 3)) 14)
+
+;Ans:
+(fn [seq] (reduce + seq))
+
 ;Problem 35: Clojure lets you give local names to values using the special let-form.
 
 (= __ (let [x 5] (+ 2 x)))
