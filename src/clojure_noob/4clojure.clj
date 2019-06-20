@@ -96,6 +96,17 @@ Write a function which returns the total number of elements in a sequence.
 ;Ans:
 (fn [seq] (reduce + seq))
 
+;Problem 25:  Write a function which returns only the odd numbers from a sequence.
+(= (__ #{1 2 3 4 5}) '(1 3 5))
+(= (__ [4 2 1 6]) '(1))
+(= (__ [2 2 4 6]) '())
+(= (__ [1 1 1 3]) '(1 1 1 3))
+;Ans:
+#(filter odd? %)
+
+
+
+
 ;Problem 35: Clojure lets you give local names to values using the special let-form.
 
 (= __ (let [x 5] (+ 2 x)))

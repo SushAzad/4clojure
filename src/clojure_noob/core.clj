@@ -132,3 +132,11 @@ from the latter (left-to-right) should be combined with the mapping in the resul
 (la '(1 2 3))
 
 ((fn [seq] (reduce + seq)) [1 2 3])
+
+(defn lala [seq]
+  (into [] (conj (into () seq))))
+
+(lala [1 2 3 4 5])
+
+((fn [seq]
+   (into [] (conj (into () seq)))) [1 2 3 4])
