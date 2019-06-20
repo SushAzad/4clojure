@@ -139,4 +139,13 @@ from the latter (left-to-right) should be combined with the mapping in the resul
 (lala [1 2 3 4 5])
 
 ((fn [seq]
-   (into [] (conj (into () seq)))) [1 2 3 4])
+   ( (into () seq))) [1 2 3 4])
+
+
+(defn lala (partial into '() [1 2 3 4]))
+
+
+
+(fn [func]
+  (fn [x y]
+    (func y x)))

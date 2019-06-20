@@ -128,6 +128,17 @@ Write a function which returns the total number of elements in a sequence.
 ;Ans:
 "ABC"
 
+;Problem 46: Write a higher-order function which flips the order of the arguments of an input function.
+(= 3 ((__ nth) 2 [1 2 3 4 5]))
+(= true ((__ >) 7 8))
+(= 4 ((__ quot) 2 8))
+(= [1 2 3] ((__ take) [1 2 3 4 5] 3))
+;Ans
+(fn [func]
+  (fn [x y]
+    (func y x)))
+
+
 ;Problem 52: Let bindings and function parameter lists support destructuring.
 (= [2 4] (let [[a b c d e] [0 1 2 3 4]] __))
 ;Ans:
