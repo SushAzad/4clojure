@@ -136,13 +136,8 @@ from the latter (left-to-right) should be combined with the mapping in the resul
 (defn lala [seq]
   (into [] (conj (into () seq))))
 
-(lala [1 2 3 4 5])
 
-((fn [seq]
-   ( (into () seq))) [1 2 3 4])
-
-
-(defn lala (partial into '() [1 2 3 4]))
+(fn [sequ] (= sequ (rseq sequ)))
 
 
 
