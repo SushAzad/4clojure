@@ -144,3 +144,19 @@ from the latter (left-to-right) should be combined with the mapping in the resul
 (fn [func]
   (fn [x y]
     (func y x)))
+
+((fn [n]
+   (->> [0 1]
+        (iterate (fn [[a b]] [b (+ a b)]))
+        (map first)
+        (take n)))4)
+
+(defn fib
+  ([n]
+   (fib [0 1] n))
+  ([x, n]
+   (if (< (count x) n)
+     (fib (conj x (+ (last x) (nth x (- (count x) 2)))) n)
+     x)))
+
+(fib 5)
