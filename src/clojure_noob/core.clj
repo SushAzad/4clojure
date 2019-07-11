@@ -141,6 +141,7 @@ from the latter (left-to-right) should be combined with the mapping in the resul
 
 
 
+
 (fn [func]
   (fn [x y]
     (func y x)))
@@ -160,3 +161,149 @@ from the latter (left-to-right) should be combined with the mapping in the resul
      x)))
 
 (fib 5)
+
+
+(defn inc-maker
+  "Custom incrementer"
+  [inc-by]
+  #(/ % inc-by))
+
+(def inc3 (inc-maker 3))
+
+(inc3 7)
+
+
+
+
+(def asym-hobbit-body-parts [{:name "head" :size 3}
+                             {:name "left-eye" :size 1}
+                             {:name "left-ear" :size 1}
+                             {:name "mouth" :size 1}
+                             {:name "nose" :size 1}
+                             {:name "neck" :size 2}
+                             {:name "left-kidney" :size 1}
+                             {:name "left-shoulder" :size 3}
+                             {:name "left-upper-arm" :size 3}
+                             {:name "left-forearm" :size 3}
+                             {:name "chest" :size 10}
+                             {:name "back" :size 10}
+                             {:name "abdomen" :size 6}
+                             {:name "left-achilles" :size 1}
+                             {:name "mouth" :size 1}
+                             {:name "left-lower-leg" :size 3}
+                             {:name "left-achilles" :size 1}
+                             ])
+
+(defn matching-part
+  [part]
+  {:name (clojure.string/replace (:name part) #"^left-" "right-")
+   :size (:size part)})
+
+(defn symmetrize-body-parts
+  "Expects a sequence of maps that have a :name and :size"
+  [asym-body-parts]
+  (loop [remaining-asym-parts asym-body-parts
+         final-body-parts []]
+    (if (empty? remaining-asym-parts)
+      final-body-parts
+      (let [[part & remaining] remaining-asym-parts]
+        (recur remaining
+               (into final-body-parts
+                     (set [part (matching-part part)])))))))
+
+(symmetrize-body-parts asym-hobbit-body-parts)
+
+(def dalmation-list
+  ["Pongo" "Peredita" "Pup 1" "Pup 2"])
+(let [dalmations (take 2 dalmation-list)]
+  dalmations)
+
+(let [[pongo pingo & dalmations] dalmation-list]
+  [pongo pingo dalmations])
+
+
+(defn inc-maker
+      "Custom incrementer"
+      [inc-by]
+      #(/ % inc-by))
+
+(def inc3 (inc-maker 3))
+
+
+(defn lala [mmax & body]
+   (if (= nil body)
+     mmax
+     (if (> (first body) mmax)
+       (apply lala body)
+       (apply lala (conj (rest body) mmax)))))
+(lala 1 8 3 4)
+
+(defn nmax [a b]
+      )
+
+(fn nicola [& body]
+  (reduce (fn [a b]
+            (if (> a b)
+              a
+              b)) body))
+
+(nmax 9 5)
+
+((fn [strin]
+   (apply str(filter #(Character/isUpperCase %) strin))) "SushMita")
+
+
+((fn [llist]
+   (reduce (fn [acc x] (conj acc x x)) [] llist)) [1 2 3])
+
+
+(#{4 5 6 nil} 4)
+
+(defn flat [llist]
+  (reduce (fn [acc x]
+            (if (coll? x)
+              (vec (concat acc (flat x)))
+              (conj acc x))) [] llist))
+(flat [1 2 [3 [4]] 5 6])
+
+
+(defn compress [collec]
+  (reduce (fn [acc x]
+            (if (= (last acc) x)
+                 acc
+                 (conj acc x))) [] collec))
+
+(#(->> % (partition-by identity) (map first)) [1 1 2 3 3 2 2 3])
+
+(defn ranges [a b]
+  (take (- b a) (iterate inc a)))
+(ranges 5 9)
+
+(range 1 7)
+
+(defn fact [n]
+  (apply * (range 1 (+ 1 n))))
+
+(apply + 1 2 [ 3 4])
+
+(fact 5)
+
+(def plus5 (partial + 5))
+
+(plus5 5)
+
+(def isNicola? (partial = "Nicola"))
+
+(isNicola? "Nicola")
+(map isNicola? ["Spencer" "Sush" "Nicola"])
+
+(defn rev-interleave [coll x]
+  (map second (group-by #(mod % x)
+                        coll)))
+
+(defn gcd [a b]
+  (if (= 0 (mod a b))
+    b
+    (gcd b (mod a b))))
+
+(gcd 1023 858)

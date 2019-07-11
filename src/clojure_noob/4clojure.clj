@@ -128,6 +128,16 @@ Write a function which returns the total number of elements in a sequence.
 ;Ans:
 "ABC"
 
+;Problem 43: Write a function which reverses the interleave process into x number of subsequences.
+(= (__ [1 2 3 4 5 6] 2) '((1 3 5) (2 4 6)))
+(= (__ (range 9) 3) '((0 3 6) (1 4 7) (2 5 8)))
+(= (__ (range 10) 5) '((0 5) (1 6) (2 7) (3 8) (4 9)))
+
+(fn rev-interleave [coll x]
+  (map second (group-by #(mod % x)
+                        coll)))
+
+
 ;Problem 46: Write a higher-order function which flips the order of the arguments of an input function.
 (= 3 ((__ nth) 2 [1 2 3 4 5]))
 (= true ((__ >) 7 8))
@@ -156,6 +166,18 @@ Write a function which returns the total number of elements in a sequence.
 (=  6 (reduce __ 1 [2 3]))
 ;Ans:
 +
+
+;Problem 66: Given two integers, write a function which returns the greatest common divisor.
+(= (__ 2 4) 2)
+(= (__ 10 5) 5)
+(= (__ 5 7) 1)
+(= (__ 1023 858) 33)
+;Ans
+(defn gcd [a b]
+  (if (= 0 (mod a b))
+    b
+    (gcd b (mod a b))))
+
 
 ;Problem 71: The -> macro threads an expression x through a variable number of forms. First, x is inserted as the second item in the first form, making a list of it if it is not a list already. Then the first form is inserted as the second item in the second form, making a list of that form if necessary. This process continues for all the forms. Using -> can sometimes make your code more readable.
 (= (__ (sort (rest (reverse [2 5 4 1 3 6]))))
