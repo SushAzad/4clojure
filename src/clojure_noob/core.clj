@@ -5,7 +5,7 @@
   (println "I'm a little teapot"))
 
 (defn ops []
-      (+ 1 2 3 4))
+  (+ 1 2 3 4))
 (def sush-alias ["yasmin" "minnu" "sloo"])
 
 (ops)
@@ -71,14 +71,14 @@ from the latter (left-to-right) should be combined with the mapping in the resul
                   (contains? m1 k) (m1 k)
                   (contains? m2 k) (m2 k))])))))
 
-(doManythings * {:a  2, :b 3, :c 4} {:a 2})
+(doManythings * {:a 2, :b 3, :c 4} {:a 2})
 
 (defn plz [] (set '(:a :a :b :c :c :c :c :d :d)))
 
 (apply str
-       (re-seq #"[A-Z]+" "bA1B3Ce "))
+  (re-seq #"[A-Z]+" "bA1B3Ce "))
 
-((fn foo [x] (when (> x 0) (conj (foo (dec x)) x)))5)
+((fn foo [x] (when (> x 0) (conj (foo (dec x)) x))) 5)
 
 (loop [x 5
        result []]
@@ -94,8 +94,8 @@ from the latter (left-to-right) should be combined with the mapping in the resul
      (map inc))
 
 (for [x (range 40)
-            :when (= 1 (rem x 4))]
-           x)
+      :when (= 1 (rem x 4))]
+  x)
 (.split "a 1 b 2 c 3" " ")
 
 (defn p156 [defaultval keys] (let [key-map (for [key keys] {key defaultval})
@@ -115,20 +115,20 @@ from the latter (left-to-right) should be combined with the mapping in the resul
 ((fn [seq] (last seq)) [1 2 3 4])
 
 ((fn [seq] (let [len (count seq)]
-           (println len)
-           (nth seq (- len 1)))) [1 2 3 4])
+             (println len)
+             (nth seq (- len 1)))) [1 2 3 4])
 
 (fn [seq] (let [len (count seq)]
             (nth seq (- len 2))))
 
-((fn [seq n] (last (take (+ n 1) seq)))'(1 2 3 4 5) 2)
+((fn [seq n] (last (take (+ n 1) seq))) '(1 2 3 4 5) 2)
 
 (fn [seq] (reduce + (map (constantly 1) seq)))
 
 (reduce + (map (constantly 1) [:a :b :c]))
 
 (defn la [seq] (let [mylist '()]
-            (map #(conj mylist %1) seq)))
+                 (map #(conj mylist %1) seq)))
 (la '(1 2 3))
 
 ((fn [seq] (reduce + seq)) [1 2 3])
@@ -150,7 +150,7 @@ from the latter (left-to-right) should be combined with the mapping in the resul
    (->> [0 1]
         (iterate (fn [[a b]] [b (+ a b)]))
         (map first)
-        (take n)))4)
+        (take n))) 4)
 
 (defn fib
   ([n]
@@ -223,23 +223,23 @@ from the latter (left-to-right) should be combined with the mapping in the resul
 
 
 (defn inc-maker
-      "Custom incrementer"
-      [inc-by]
-      #(/ % inc-by))
+  "Custom incrementer"
+  [inc-by]
+  #(/ % inc-by))
 
 (def inc3 (inc-maker 3))
 
 
 (defn lala [mmax & body]
-   (if (= nil body)
-     mmax
-     (if (> (first body) mmax)
-       (apply lala body)
-       (apply lala (conj (rest body) mmax)))))
+  (if (= nil body)
+    mmax
+    (if (> (first body) mmax)
+      (apply lala body)
+      (apply lala (conj (rest body) mmax)))))
 (lala 1 8 3 4)
 
 (defn nmax [a b]
-      )
+  )
 
 (fn nicola [& body]
   (reduce (fn [a b]
@@ -250,7 +250,7 @@ from the latter (left-to-right) should be combined with the mapping in the resul
 (nmax 9 5)
 
 ((fn [strin]
-   (apply str(filter #(Character/isUpperCase %) strin))) "SushMita")
+   (apply str (filter #(Character/isUpperCase %) strin))) "SushMita")
 
 
 ((fn [llist]
@@ -270,8 +270,8 @@ from the latter (left-to-right) should be combined with the mapping in the resul
 (defn compress [collec]
   (reduce (fn [acc x]
             (if (= (last acc) x)
-                 acc
-                 (conj acc x))) [] collec))
+              acc
+              (conj acc x))) [] collec))
 
 (#(->> % (partition-by identity) (map first)) [1 1 2 3 3 2 2 3])
 
@@ -284,7 +284,7 @@ from the latter (left-to-right) should be combined with the mapping in the resul
 (defn fact [n]
   (apply * (range 1 (+ 1 n))))
 
-(apply + 1 2 [ 3 4])
+(apply + 1 2 [3 4])
 
 (fact 5)
 
@@ -307,3 +307,29 @@ from the latter (left-to-right) should be combined with the mapping in the resul
     (gcd b (mod a b))))
 
 (gcd 1023 858)
+
+(take 5 (iterate #(+ 3 %) 1))
+
+(defn split [n coll]
+  [(take n coll) (drop n coll)])
+
+(take 3 [1 2 3 4 5 6])
+
+(split 3 [1 2 3 4 5 6])
+
+(type [1 2 3])
+
+(defn split-type [coll]
+  (map second (group-by type coll)))
+
+(split-type [1 :a 2 :b])
+
+(defn set-inter [a b]
+  (set (remove nil? (for [x a
+                          y b]
+                      (when (= x y) x)))))
+
+
+(#{3 :a #{1 2} 4 5} #{1 2})
+
+(set-inter #{1 2 3} #{2 3 4 5})
