@@ -211,7 +211,29 @@ from the latter (left-to-right) should be combined with the mapping in the resul
                (into final-body-parts
                      (set [part (matching-part part)])))))))
 
+
+(defn better-symmetrize-body-parts
+  "Expects a sequence of maps that have a :name and a :size"
+  [asym-body-parts]
+  (reduce (fn [final-body-parts part]
+            (into final-body-parts (set [part (matching-part part)])))
+          [] asym-body-parts))
 (symmetrize-body-parts asym-hobbit-body-parts)
+(better-symmetrize-body-parts asym-hobbit-body-parts)
+
+
+
+(defn hit [asym-body-parts]
+  (let [sym-parts (better-symmetrize-body-parts asym-body-parts)
+        body-part-size-sum (reduce + (map :size sym-parts))
+        target (rand body-part-size-sum)]
+    (loop [[part & remaining] sym-parts
+           accumulated-size (:size part)]
+      (if (> accumulated-size target)
+        part
+        (recur remaining (+ accumulated-size (:size (first remaining))))))))
+
+(hit asym-hobbit-body-parts)
 
 (def dalmation-list
   ["Pongo" "Peredita" "Pup 1" "Pup 2"])
@@ -220,6 +242,8 @@ from the latter (left-to-right) should be combined with the mapping in the resul
 
 (let [[pongo pingo & dalmations] dalmation-list]
   [pongo pingo dalmations])
+
+
 
 
 (defn inc-maker
@@ -333,3 +357,5 @@ from the latter (left-to-right) should be combined with the mapping in the resul
 (#{3 :a #{1 2} 4 5} #{1 2})
 
 (set-inter #{1 2 3} #{2 3 4 5})
+
+
