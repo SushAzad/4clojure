@@ -1,5 +1,6 @@
 (ns clojure-noob.core
-  (:gen-class))
+  (:gen-class)
+  (:require [clojure.string :as str]))
 
 (defn -main [& _]
   (println "I'm a little teapot"))
@@ -359,3 +360,12 @@ from the latter (left-to-right) should be combined with the mapping in the resul
 (set-inter #{1 2 3} #{2 3 4 5})
 
 
+
+(defn prod-dig [a  b]
+  (map #(Integer/parseInt %) (str/split (str (* a b)) #"")))
+
+#_(prod-dig 5 10)
+
+
+((fn prod-dig [a b]
+   (map #( Character/digit % 10) (str (* a b))))1 1)
