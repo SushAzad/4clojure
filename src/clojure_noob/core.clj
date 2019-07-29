@@ -369,3 +369,7 @@ from the latter (left-to-right) should be combined with the mapping in the resul
 
 ((fn prod-dig [a b]
    (map #( Character/digit % 10) (str (* a b))))1 1)
+
+(fn [n]
+    (fn [x]
+        (apply * (repeat n x))))
