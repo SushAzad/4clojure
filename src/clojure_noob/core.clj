@@ -380,3 +380,14 @@ from the latter (left-to-right) should be combined with the mapping in the resul
         (op b a) :gt
         :else :eq))
 
+
+(defn idx-seq [coll]
+  (partition 2 (interleave
+                 coll
+                 (iterate inc 0))))
+
+
+(idx-seq '(:a :b :c :d))
+
+
+(#(map vector % (range)) '(:a :b :c))
