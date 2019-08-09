@@ -374,7 +374,8 @@ from the latter (left-to-right) should be combined with the mapping in the resul
     (fn [x]
         (apply * (repeat n x))))
 
-(defn lala [op a b]
+(defn lala
+   [op a b]
       (cond
         (op a b) :lt
         (op b a) :gt
@@ -391,3 +392,6 @@ from the latter (left-to-right) should be combined with the mapping in the resul
 
 
 (#(map vector % (range)) '(:a :b :c))
+
+(defn increasing? [vec]
+  ())

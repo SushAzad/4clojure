@@ -173,6 +173,11 @@ Write a function which will split a sequence into two parts.
 (defn split-type [coll]
   (map second (group-by type coll)))
 
+;Problem 51
+
+(= [1 2 [3 4 5] [1 2 3 4 5]] (let [[a b & c :as d] __] [a b c d]))
+;Ans
+[1 2 3 4 5]
 
 ;Problem 52: Let bindings and function parameter lists support destructuring.
 (= [2 4] (let [[a b c d e] [0 1 2 3 4]] __))
